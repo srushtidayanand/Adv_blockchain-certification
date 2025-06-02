@@ -1,0 +1,34 @@
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.attributes-section {
+    border: 1px solid #e0e0e0;
+    padding: 16px;
+    border-radius: 4px;
+}
+
+.attributes-list {
+    margin-top: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.attribute-item {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.form-actions {
+    margin-top: 24px;
+}

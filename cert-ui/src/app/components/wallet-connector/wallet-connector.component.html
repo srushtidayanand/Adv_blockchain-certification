@@ -1,0 +1,38 @@
+<div class="wallet-page-wrapper">
+<div class="wallet-container">
+  <ng-container *ngIf="(isConnected$ | async) === false; else connected">
+    <h1>Connect To Your MetaMask Account</h1>
+    <button mat-raised-button color="primary" (click)="connectWallet()">
+      Connect Wallet
+    </button>
+  </ng-container>
+
+  <ng-template #connected>
+    <div class="checkmark-container">
+      <div class="checkmark"></div>
+    </div>
+    <h1>Successfully Connected</h1>
+
+    <div class="wallet-info">
+      <h3>Address: <span class="address">{{ (accountAddress$ | async) | slice:0:6 }}...{{ (accountAddress$ | async)|
+          slice:-4}}</span></h3>
+
+    </div>
+
+    <div class="action-buttons">
+      <div class="logout">
+        <button mat-raised-button color="warn" (click)="disconnectWallet()">
+          <mat-icon>logout</mat-icon>
+          Disconnect
+        </button>
+      </div>
+      <div class="view">
+        <button mat-raised-button color="accent" (click)="redirect()">
+          <mat-icon>description</mat-icon>
+          View Certificates
+        </button>
+      </div>
+    </div>    
+  </ng-template>
+</div>
+</div>

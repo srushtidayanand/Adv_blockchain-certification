@@ -1,0 +1,54 @@
+<!-- src/app/components/my-certificates/my-certificates.component.html -->
+<div class="container">
+  <header class="page-header">
+    <h2>My Certificates</h2>
+  </header>
+
+  <!-- Loading Spinner -->
+  <div *ngIf="loading" class="loading-container">
+    <mat-spinner diameter="40"></mat-spinner>
+    <span>Loading your certificates...</span>
+  </div>
+
+  <!-- No Certificates Message -->
+  <div *ngIf="!loading && certificates.length === 0" class="empty-state">
+    <mat-icon>school</mat-icon>
+    <h3>No Certificates Found</h3>
+    <p>You don't have any certificates yet. They will appear here once you receive them.</p>
+  </div>
+
+  <!-- Certificates Grid -->
+  <div *ngIf="!loading && certificates.length > 0" class="certificates-grid">
+    <mat-card *ngFor="let cert of certificates" class="certificate-card">
+      <div class="certificate-image-container">
+        <img *ngIf="cert.image" [src]="cert.image" alt="Certificate Image" class="certificate-image">
+        <div *ngIf="!cert.image" class="no-image">
+          <mat-icon>image_not_supported</mat-icon>
+        </div>
+      </div>
+
+      <div class="certificate-content">
+        <mat-card-header>
+          <mat-card-title>{{ cert.name }}</mat-card-title>
+          <mat-card-subtitle>Issued: {{ cert.issuedDate | date }}</mat-card-subtitle>
+        </mat-card-header>
+
+        <mat-card-content>
+          <div class="certificate-info">
+            <strong>Recipient:</strong><br>
+            <span class="token-id">{{ cert.issuedTo }}</span>
+            <p>
+              <strong>ID:</strong>
+              <span class="token-id">{{ cert.certId }}</span>
+              <button mat-icon-button (click)="copyToClipboard(cert.certId.toString())" aria-label="Copy Token ID">
+                <mat-icon>content_copy</mat-icon>
+              </button>
+            </p>
+          </div>
+        </mat-card-content>
+
+        
+      </div>
+    </mat-card>
+  </div>
+</div>

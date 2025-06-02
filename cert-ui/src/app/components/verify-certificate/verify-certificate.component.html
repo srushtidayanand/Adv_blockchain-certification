@@ -1,0 +1,60 @@
+<!-- src/app/components/verify-certificate/verify-certificate.component.html -->
+<div class="container">
+    <h2>Verify Certificate</h2>
+
+    <form [formGroup]="verifyForm" (ngSubmit)="onSubmit()">
+        <mat-form-field appearance="fill">
+            <mat-label>Certificate Token ID</mat-label>
+            <input matInput formControlName="tokenId" placeholder="Enter certID">
+            <mat-error *ngIf="verifyForm.get('tokenId')?.hasError('required')">
+                Token ID is required
+            </mat-error>
+        </mat-form-field>
+
+        <div class="form-actions">
+            <button type="submit" mat-raised-button color="primary" [disabled]="verifyForm.invalid || isVerifying">
+                Verify
+            </button>
+        </div>
+    </form>
+
+    <div *ngIf="certificate" class="certificate-details">
+        <h2>Verification Successful!</h2>
+        <h3>Certificate Details</h3>
+
+        <div class="detail-row">
+            <span class="label">Current Owner:</span>
+            <span class="value">{{ certificate.metadata.issuedTo }}</span>
+        </div>
+
+        <div class="detail-row">
+            <span class="label">Original Recipient:</span>
+            <span class="value">{{ certificate.metadata.issuedBy }}</span>
+        </div>
+        
+        <div *ngIf="certificate.metadata" class="metadata">
+            <h4>{{ certificate.metadata.name }}</h4>
+            <p>{{ certificate.metadata.description }}</p>
+
+            <div *ngIf="certificate.metadata.image" class="certificate-image">
+                <img [src]="certificate.metadata.image" alt="Certificate Image">
+            </div>
+
+            <div *ngIf="certificate.metadata.attributes?.length" class="attributes">
+                <h4>Attributes</h4>
+                <div *ngFor="let attr of certificate.metadata.attributes" class="attribute">
+                    <span class="attr-type">{{ attr.trait_type }}:</span>
+                    <span class="attr-value">{{ attr.value }}</span>
+                </div>
+            </div>
+
+            <div class="metadata-footer">
+                <div>Issued by: {{ certificate.metadata.issuedBy }}</div>
+                <div>Date: {{ certificate.metadata.issuedDate | date }}</div>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="hasSubmitted && isInvalid" class="certificate-details">
+        <h2>Certificate ID Does not Exist</h2>
+    </div>
+</div>

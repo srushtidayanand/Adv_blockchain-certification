@@ -1,0 +1,61 @@
+<!-- src/app/components/issue-certificate/issue-certificate.component.html -->
+<div class="container">
+    <h2>Issue New Certificate</h2>
+    
+    <form [formGroup]="certificateForm" (ngSubmit)="onSubmit()">
+      <mat-form-field appearance="fill">
+        <mat-label>Recipient Address</mat-label>
+        <input matInput formControlName="recipientAddress" placeholder="0x...">
+        <mat-error *ngIf="certificateForm.get('recipientAddress')?.hasError('required')">
+          Recipient address is required
+        </mat-error>
+        <mat-error *ngIf="certificateForm.get('recipientAddress')?.hasError('pattern')">
+          Please enter a valid Ethereum address
+        </mat-error>
+      </mat-form-field>
+      
+      <mat-form-field appearance="fill">
+        <mat-label>Certificate Name</mat-label>
+        <input matInput formControlName="name" placeholder="Certificate of Completion">
+      </mat-form-field>
+      
+      <mat-form-field appearance="fill">
+        <mat-label>Description</mat-label>
+        <textarea matInput formControlName="description" rows="3"></textarea>
+      </mat-form-field>
+      
+      <mat-form-field appearance="fill">
+        <mat-label>Image URL</mat-label>
+        <input matInput formControlName="imageUrl" placeholder="https://...">
+      </mat-form-field>
+      
+      <div class="attributes-section">
+        <h3>Attributes</h3>
+        <button type="button" mat-stroked-button (click)="addAttribute()">Add Attribute</button>
+        
+        <div formArrayName="attributes" class="attributes-list">
+          <div *ngFor="let attribute of attributesArray.controls; let i = index" [formGroupName]="i" class="attribute-item">
+            <mat-form-field appearance="fill">
+              <mat-label>Trait Type</mat-label>
+              <input matInput formControlName="trait_type">
+            </mat-form-field>
+            
+            <mat-form-field appearance="fill">
+              <mat-label>Value</mat-label>
+              <input matInput formControlName="value">
+            </mat-form-field>
+            
+            <button type="button" mat-icon-button color="warn" (click)="removeAttribute(i)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </div>
+        </div>
+      </div>
+      
+      <div class="form-actions">
+        <button type="submit" mat-raised-button color="primary" [disabled]="certificateForm.invalid || isSubmitting">
+          Issue Certificate
+        </button>
+      </div>
+    </form>
+  </div>

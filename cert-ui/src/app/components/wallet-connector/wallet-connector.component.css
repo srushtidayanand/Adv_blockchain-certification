@@ -1,0 +1,159 @@
+.wallet-page-wrapper {
+  height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 60px;
+  box-sizing: border-box;
+}
+
+.wallet-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+  padding: 24px;
+  border: 2px solid #ccc;
+  border-radius: 12px;
+  max-width: 400px;
+  text-align: center;
+  background: white;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
+}
+
+button {
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 10px 20px;
+  border-radius: 30px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+button[color="primary"] {
+  background-color: #673be5;
+  color: white;
+  box-shadow: 0 4px 12px rgba(103, 59, 229, 0.3);
+}
+
+button[color="primary"]:hover {
+  background-color: #552ed1;
+  box-shadow: 0 6px 14px rgba(103, 59, 229, 0.5);
+}
+
+.action-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+}
+
+.action-buttons button {
+  min-width: 160px;
+  justify-content: center;
+}
+
+
+.logout button {
+  justify-content: center;
+  align-items: center;
+  background-color: #e53935;
+  color: white;
+  padding: 8px 18px;
+  border-radius: 30px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  box-shadow: 0 3px 8px rgba(229, 57, 53, 0.2);
+}
+
+.logout button:hover {
+  background-color: #c62828;
+  box-shadow: 0 4px 10px rgba(229, 57, 53, 0.4);
+}
+
+.view button {
+  top: 20px;
+  background-color: #397b25;
+  color: white;
+  padding: 8px 18px;
+  border-radius: 30px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  box-shadow: 0 3px 8px rgba(229, 57, 53, 0.2);
+}
+
+.view button:hover {
+  background-color: #365a39;
+  box-shadow: 0 4px 10px rgba(67, 228, 94, 0.4);
+}
+
+.connect-box h3 {
+  margin-bottom: 16px;
+  font-size: 1.2rem;
+}
+
+.wallet-info {
+  display: flex;
+  align-items: center;
+  background: rgb(217, 217, 217);
+  padding: 8px 12px;
+  border-radius: 20px;
+}
+
+.address {
+  font-family: monospace;
+  margin-right: 8px;
+  color: rgb(41, 129, 63);
+}
+
+.logout {
+  margin-top: 12px;
+}
+
+.view {
+  margin-top: 12px;
+}
+
+.checkmark-container {
+  width: 50px;
+  height: 50px;
+  margin-left: 8px;
+  position: relative;
+}
+
+.checkmark {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #4caf50;
+  position: relative;
+  animation: pop-in 0.5s ease-out;
+}
+
+.checkmark::after {
+  content: '';
+  position: absolute;
+  left: 19px;
+  top: 8px;
+  width: 12px;
+  height: 24px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+@keyframes pop-in {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
